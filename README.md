@@ -1,6 +1,6 @@
 # But
 
-Offir tout notre amour à docteur duduch
+Offrir tout notre amour à docteur duduch
 
 # Installation
 
@@ -24,7 +24,7 @@ le dossier dans lequel est défini le modèle.
 
 ``` r
 library(shiny)
-# Lancer l'application proie/prédateur de Lotka Volterra
+# Lancer l'application de "remerciements" de duduch 
 runApp("~/my/path/to/the/repo/Docteur_Duduch/ui.R")
 ```
 
