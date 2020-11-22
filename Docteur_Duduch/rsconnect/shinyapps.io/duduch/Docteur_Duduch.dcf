@@ -1,0 +1,12 @@
+name: Docteur_Duduch
+title: Docteur_Duduch
+username:
+account: duduch
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3284362
+bundleId: 3892386
+url: https://duduch.shinyapps.io/Docteur_Duduch/
+when: 1606084866.07397
+asMultiple: FALSE
+asStatic: FALSE
