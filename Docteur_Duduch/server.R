@@ -12,11 +12,13 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
+  # load data directlty from framacalc
   data <- reactive({
     URL_data_duduch <- RCurl::getURL("https://lite.framacalc.org/9k8a-une-super-app-pour-la-soutenance-de-duduch.csv")
     data_duduch <- read.csv (text = URL_data_duduch)
   })
   
+  # add the list of all the names (select input)
   output$list_nom <- renderUI({
     data_duduch <- data()
     data_duduch$Nom <- as.character(data_duduch$Nom)
@@ -25,24 +27,30 @@ shinyServer(function(input, output) {
                 ""
     )
   })
+  
+  # reacts when the button new_message is pressed
   observeEvent(input$new_message,{
     
+    # select one line of the data (name + message)
     mot_choisis <- reactive({
       data_duduch <- data()
       random <- sample(1:nrow(data_duduch), size = 1)
       data_duduch[random, ]
     })
     
+    # print the name R style
     output$print_mot <- renderPrint({
       mot_choisis <- mot_choisis()
       mot_choisis$Mot <- as.character(mot_choisis$Mot)
       mot_choisis[, "Mot"]
     })
     
+    # name of the message currently choosen in the list (by duduch)
     nom_choisis <- eventReactive(input$check_name, {
       input$name
     })
     
+    # check if the name is the right one (reward if yes, error message if no)
     observeEvent(input$check_name,{
       output$print_name <- renderPrint({
         mot_choisis <- mot_choisis()
@@ -54,6 +62,8 @@ shinyServer(function(input, output) {
         }
       })
     })
+    
+    
     
   })
 })

@@ -6,7 +6,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Félicitation docteur Duduch !"),
   
-  # Sidebar with a slider input for number of bins 
+  # Sidebar with two buttons and a select input
   sidebarLayout(
     sidebarPanel(
       actionButton("new_message", "Envoyer un mot !"),
@@ -15,7 +15,7 @@ shinyUI(fluidPage(
       actionButton("check_name", "Valider le nom associé")
     ),
     
-    # Show a plot of the generated distribution
+    # Show one message and the answer to the test
     mainPanel(
       verbatimTextOutput("print_mot"),
       verbatimTextOutput("print_name")
