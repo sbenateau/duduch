@@ -9,16 +9,18 @@ shinyUI(fluidPage(
   # Sidebar with two buttons and a select input
   sidebarLayout(
     sidebarPanel(
-      actionButton("new_message", "Envoyer un mot !"),
+      actionButton("new_message", "Commencer"),
       HTML("<br><br>"),
       uiOutput("list_nom"),
-      actionButton("check_name", "Valider le nom associé")
+      uiOutput("check_name_button")
     ),
     
     # Show one message and the answer to the test
     mainPanel(
-      verbatimTextOutput("print_mot"),
-      verbatimTextOutput("print_name")
+      textOutput("print_mot"),
+      HTML("<br><br>"),
+      verbatimTextOutput("print_name"),
+      verbatimTextOutput("print_results")
     )
   )
 ))
