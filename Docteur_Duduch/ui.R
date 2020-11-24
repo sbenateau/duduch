@@ -21,9 +21,17 @@ shinyUI(fluidPage(
     mainPanel(
       textOutput("print_mot"),
       HTML("<br><br>"),
-      verbatimTextOutput("print_name"),
-      verbatimTextOutput("print_results"),
-      div(img(src = "rocheton.png", width = "70%"), style="text-align: center;")
+      fluidRow(
+        column(6,
+               verbatimTextOutput("print_name"),
+               verbatimTextOutput("print_results"),
+               div(img(src = "rocheton.png", width = "100%"), style="text-align: center;")
+        ),
+        column(6,
+               HTML("<br>"),
+               uiOutput("plot")
+        )
+      )
     )
   )
 ))
