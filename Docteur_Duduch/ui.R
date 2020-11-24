@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Félicitation docteur Duduch !"),
+  titlePanel("Félicitations docteur Duduch !"),
   
   # Sidebar with two buttons and a select input
   sidebarLayout(
@@ -20,7 +20,8 @@ shinyUI(fluidPage(
       textOutput("print_mot"),
       HTML("<br><br>"),
       verbatimTextOutput("print_name"),
-      verbatimTextOutput("print_results")
+      verbatimTextOutput("print_results"),
+      img(src = "rocheton.png", height = 300, width = 600)
     )
   )
 ))

@@ -22,7 +22,7 @@ Ces applications nécessitent d’avoir installé le package `shiny` dans R.
 Vous pouvez lancer une application en lancant la commande pointant vers
 le dossier dans lequel est défini le modèle.
 
-``` r
+```r
 library(shiny)
 # Lancer l'application de "remerciements" de duduch 
 runApp("~/my/path/to/the/repo/Docteur_Duduch/ui.R")
