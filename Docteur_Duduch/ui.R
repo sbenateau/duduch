@@ -13,7 +13,7 @@ shinyUI(fluidPage(
       HTML("<br><br>"),
       uiOutput("list_nom"),
       uiOutput("check_name_button"),
-      img(src = "francois.png", height = 300, width = 300)
+      div(img(src = "francois.png", width = "70%"), style="text-align: center;")
     ),
     
     # Show one message and the answer to the test
@@ -22,7 +22,7 @@ shinyUI(fluidPage(
       HTML("<br><br>"),
       verbatimTextOutput("print_name"),
       verbatimTextOutput("print_results"),
-      img(src = "rocheton.png", height = 300, width = 600)
+      div(img(src = "rocheton.png", width = "70%"), style="text-align: center;")
     )
   )
 ))
