@@ -57,7 +57,8 @@ shinyServer(function(input, output, session) {
     
     # add the button to check name
     output$check_name_button <- renderUI({
-      actionButton("check_name", "Valider le nom associé")
+      actionButton("check_name", "Valider le nom associé", icon("dove"),
+                   style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
     })
     
     # select one line of the data (name + message)

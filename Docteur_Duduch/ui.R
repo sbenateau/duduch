@@ -9,7 +9,8 @@ shinyUI(fluidPage(
   # Sidebar with two buttons and a select input
   sidebarLayout(
     sidebarPanel(
-      actionButton("new_message", "Commencer"),
+      actionButton("new_message", "Commencer", icon("paper-plane"), 
+                   style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
       HTML("<br><br>"),
       uiOutput("list_nom"),
       uiOutput("check_name_button"),
