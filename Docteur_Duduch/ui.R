@@ -12,7 +12,8 @@ shinyUI(fluidPage(
       actionButton("new_message", "Commencer"),
       HTML("<br><br>"),
       uiOutput("list_nom"),
-      uiOutput("check_name_button")
+      uiOutput("check_name_button"),
+      img(src = "francois.png", height = 300, width = 300)
     ),
     
     # Show one message and the answer to the test
