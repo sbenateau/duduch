@@ -10,18 +10,23 @@
 library(shiny)
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   # load data directlty from framacalc
+  # order and add columns to store information
   data <- reactive({
     URL_data_duduch <- RCurl::getURL("https://lite.framacalc.org/9k8a-une-super-app-pour-la-soutenance-de-duduch.csv")
     data_duduch <- read.csv (text = URL_data_duduch)
+    data_duduch <- data_duduch[order(data_duduch[, "Nom"]), ]
+    row.names(data_duduch) <- 1:nrow(data_duduch)
     data_duduch$essais <- 0
     data_duduch$trouve <- FALSE
     data_duduch
   })
   
-  # add reactive values to follow what is 
+  # add reactive values to follow what is going on
+  # mot is the whole dataset
+  # current line is the focus message
   values <- reactiveValues(
     mots = NULL,
     current_line = NULL
@@ -29,22 +34,17 @@ shinyServer(function(input, output) {
   
   # reacts when the button new_message is pressed
   observeEvent(input$new_message,{
+    # change the main button to new message after the application started
+    updateActionButton(session, "new_message",
+                       label = "Afficher un nouveau message !")
     
+    # add data to reactive value
     if (is.null(values$mots)) {
       values$mots <- data()
     }
     
-    
-    isolate({
-      if (!is.null(values$current_line)){
-        if (values$mots[values$current_line, "essais"] != 0){
-          values$mots[values$current_line, "essais"] = values$mots[values$current_line, "essais"] - 1
-        }
-      }
-      
-    })
-    
     # add the list of all the names (select input)
+    # with update of the list each time an author has been found
     output$list_nom <- renderUI({
       data_duduch <-  isolate(values$mots)
       data_duduch <- subset(data_duduch, !data_duduch$trouve)
@@ -55,6 +55,7 @@ shinyServer(function(input, output) {
       )
     })
     
+    # add the button to check name
     output$check_name_button <- renderUI({
       actionButton("check_name", "Valider le nom associé")
     })
@@ -68,7 +69,7 @@ shinyServer(function(input, output) {
       data_duduch[random, ]
     })
     
-    # print the name R style
+    # print the message
     output$print_mot <- renderText({
       mot_choisis <- mot_choisis()
       mot_choisis$Mot <- as.character(mot_choisis$Mot)
